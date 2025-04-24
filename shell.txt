@@ -7,3 +7,42 @@ do
     echo "Scanning port $port..."
     nc -zv -w1 "$host" "$port" 2>&1
 done
+
+==========================================
+
+call  back icmp 
+
+from scapy.all import *
+
+def packet_callback(packet):
+    if packet[IP].proto == 1:  # ICMP protocol
+        print(f"ICMP packet from {packet[IP].src}")
+
+sniff(prn=packet_callback, filter="icmp", store=0)
+==========================
+from scapy.all import *
+
+# Target IP address
+target_ip = "93.184.215.14"
+
+# List of ports to scan
+ports = [22, 80, 443]
+
+# Perform SYN scan
+for port in ports:
+    packet = IP(dst=target_ip)/TCP(dport=port, flags="S")
+    response = sr1(packet, timeout=1, verbose=0)
+    if response:
+        if response[TCP].flags == "SA":
+            print(f"Port {port} is open.")
+        elif response[TCP].flags == "RA":
+            print(f"Port {port} is closed.")
+===========================================
+HTTP/1.1 200 OK 
+Content-Type: text/html; charset=UTF-8 
+Server: nooblinux 
+
+<!doctype html> 
+<title>Nooblinux</title> 
+<h1>Hello from Netcat!</h1>
+ for shell scrpit 
